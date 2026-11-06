@@ -1,0 +1,87 @@
+experiment_directory: path/to/pyseq/experiment
+output_directory: path/to/output/data/to
+resources:
+  dask_worker:
+    manager: SLURM
+    # or specify in .config/dask/jobqueue.yaml
+    queue: cpu
+    cores: 2
+    memory: 16G
+    log_directory: dask_logs
+markers:
+  # cycle:
+  #   channel1: marker1
+  #   channel2: marker2
+  0:
+    687: blocking
+  10:
+    558: CD105
+    610: SOD1
+    687: CD38
+  2:
+    558: MBP
+    610: ELAVL2
+    687: ALDH1L1
+  3:
+    558: LAMP2
+    610: vGLUT1
+    687: NeuN
+  4:
+    558: APOE
+    610: NFL
+    687: AQP4
+  5:
+    558: MAP2
+    610: f4_80
+    687: CD68
+  6:
+    558: PD-1
+    610: CD29
+    687: PD-L1
+  7:
+    558: GFAP
+    610: CD14
+    687: CD4
+  8:
+    668: Notch1
+    610: Neuropilin
+  9:
+    687: PCNA
+    740: CD44
+  1:
+    610: CD11b
+    687: TREM2
+  11:
+    610: polyT
+    687: DRAQ5
+unmix:
+  max_iter: 100              # Max iterations to optimize unmixing
+
+unmixing:
+  610: [558,]
+  558: [610,]
+  687: [740,]
+  740: [687,]
+
+segmentation:
+  model_type: ‘path/to/cellpose/model.pkl’
+  diameter: 30
+  cytoplasm:
+    channel:
+    - polyT
+  nuclei:
+    channel:
+    - DRAQ5
+feature_extraction:
+  imagenet:
+    R: NeuN
+    G: GFAP
+    B: CD29
+
+gpu_spec:
+  partition: gpu
+  gres: gpu:1
+
+
+celltype:
+  markers: ‘path/to/celltype/markers.yaml'

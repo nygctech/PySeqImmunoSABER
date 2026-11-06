@@ -1,0 +1,161 @@
+# Experiment Details
+#
+# - method: name of installed method (string), section with HiSeq settings (string), or path to method config file (path)
+# - cycles: number of cycles to run (integer)
+# - first flowcell: which flowcell to run first, A or B (string)
+#
+[experiment]
+method = ImmunoSABER
+cycles = 11
+first flowcell = A
+
+
+# Position of Sections on Flowcell
+#
+# section name = AorB: LLx, LLy, URx, URy (use slide grid)
+#
+# - section name: Name of area on slide to image
+# - LLx: Lower left x position on flowcell
+# - LLy: Lower left y position on flowcell
+# - URx: Upper right x position on flowcell
+# - URy: Upper right y position on flowcell
+#
+# For Example:
+# Area2Image: A = 15, 45, 10, 35
+#
+[sections]
+
+s03t02g93am18 = A: 9.5, 17.5, 6, 14
+s03t04g93am18 = A: 9, 25.5, 5.5, 22
+s03t06g93am16 = A: 13, 33, 10, 29.5
+s03t08g93am16 = A: 18, 25.5, 14, 22.5
+s03t10g93am17 = A: 18, 16.5, 14.5, 13
+s03t12g93am17 = A: 14, 9.5, 10, 6
+
+s03b02b6jlm03 = A: 10, 52.5, 7, 49.5
+s03b04b6jlm03 = A: 9.5, 60.5, 6.5, 57.5
+s03b06b6jlm01 = A: 10.5, 65.5, 5, 63
+s03b08b6jlm01 = A: 17.5, 60, 14.5, 57
+s03b10b6jlm02 = A: 18, 52.5, 15, 49.5
+s03b12b6jlm02 = A: 13, 44.5, 10, 41.5
+
+
+s04t02b6jlm03 = B: 9.5, 17.5, 6.5, 14.5
+s04t04b6jlm03 = B: 9.5, 25, 6.5, 22
+s04t06b6jlm01 = B: 13.5, 32.5, 10, 29.5
+s04t08b6jlm01 = B: 18.5, 25.5, 15, 22
+s04t10b6jlm02 = B: 18, 16.5, 15, 13.5
+s04t12b6jlm02 = B: 13, 11, 9.5, 7
+
+s04b02g93am18 = B: 9.5, 50.25, 6.5, 47
+s04b04g93am18 = B: 9.5, 60, 6.5, 56.5
+s04b06g93am16 = B: 14.5, 68, 11.5, 65
+s04b08g93am16 = B: 17, 59.5, 14, 56.5
+s04b10g93am17 = B: 18, 52, 14.75, 49
+s04b12g93am17 = B: 14, 44.5, 11, 41
+
+
+
+# Specify Cycle Specific Reagents
+#
+# variable_reagent N = reagent name
+# 
+# -variable_reagent: cycle dependent reagent in recipe, must be lowercase and no spaces (string)
+# -N: cycle (integer)
+# -reagent name: reagent used for variable_regent at cycle N (string)
+# 
+# For Example:
+# 1stab1 1 = GFAP
+#
+[cycles]
+imagers 1 = cycle1
+imagers 2 = cycle2
+imagers 3 = cycle3
+imagers 4 = cycle4
+imagers 5 = cycle5
+imagers 6 = cycle6
+imagers 7 = cycle7
+imagers 8 = cycle8
+imagers 9 = cycle9
+imagers 10 = cycle10
+imagers 11 = DRAQ5
+
+
+
+# Specify Filters to Use for Each Cycle
+# 
+# color N = name
+# 
+# -color: laser color (string, ie green, g, or G)
+# -N: cycle (integer)
+# -name: filter used for imaging at cycle N, see table below for options (float/string)
+#
+# Laser | Filter Options
+# green | open, 0.2, 0.6, 1.4, 1.6, 2.0, 4.0, home
+# red   | open, 0.2, 0.9, 1.0, 2.0, 3.0, 4.5, home
+#
+# For Example:
+# green 1: 1.6
+#
+[filters]
+
+
+# Assign Reagents to Ports
+# 
+# N = name
+#
+# -N: port number (integer)
+# -name: name of reagent
+#
+# For Example:
+# 1 = PBS
+#
+[reagents]
+20 = concatemers
+
+9 = formamide
+23 = PBS
+24 = i28
+
+10 = imaging
+11 = cycle1
+12 = cycle2
+13 = cycle3
+14 = cycle4
+15 = cycle5
+16 = cycle6
+18 = cycle8
+19 = cycle9
+1 = cycle10
+2 = cycle7
+3 = DRAQ5
+
+
+
+
+# Method specific section (optional)
+# 
+# Can use installed methods or seperate method config file instead
+# To see installed methods, pyseq -l
+# To see details of installed methods, pyseq -m method_name
+#
+[ImmunoSABER]
+
+recipe = c:\\Users\\pysequser\\Documents\\pyseq_configs\\SABER_recipe.txt
+pre recipe = c:\\Users\\pysequser\\Documents\\pyseq_configs\\concatemer_wash+i28_imag.txt
+variable reagents = imagers
+red laser power = 250
+green laser power = 250
+red focus filter = 1.0
+green focus filter = 1.0
+default green filter = open
+default red filter = open
+default em filter = False
+autofocus = full once
+focus tolerance = 20
+z planes = 10
+barrels per lane = 8
+reagent flowrate = 100
+first port = imagers
+z position = 21950
+rinse = PBS
