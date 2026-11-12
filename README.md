@@ -15,7 +15,15 @@ ventral gray matter, with **43% of motor neurons embedded in them in SOD1-G93A m
 in wild type**. This reorganization precedes measurable motor-neuron loss, and the spatial
 protein patterns agree with transcriptomic data from both mouse and human ALS tissue.
 
-<img width="610" height="610" alt="Screenshot 2026-11-12 at 4 49 29 PM" src="https://github.com/user-attachments/assets/04fc8ee5-6851-4099-a069-c960ef7ff33e" />
+<p align="center">
+  <img width="610" height="610" alt="Screenshot 2026-11-12 at 4 49 29 PM" src="https://github.com/user-attachments/assets/04fc8ee5-6851-4099-a069-c960ef7ff33e" />
+</p>
+
+<p align="center">
+
+*Motor neurons surrounded by astrocytes.* $\textcolor{cyan}{\text{Nuclei: DRAQ5}}$, $\textcolor{magenta}{\text{Cytoplasm: Cy3-poly(dT)}}$, $\textcolor{#FFD700}{\text{Astrocytes: GFAP}}$
+
+</p>
 
 ## Links
 
