@@ -22,7 +22,7 @@ protein patterns agree with transcriptomic data from both mouse and human ALS ti
 | **Preprint** | [biorxiv.org/content/10.64898/2026.11.08.765207v1](https://www.biorxiv.org/content/10.64898/2026.11.08.765207v1) |
 | **Data** | [10.5281/zenodo.23959523](https://doi.org/10.5281/zenodo.23959523) |
 | **Sequencer repurposing** | [nygctech/PySeq2500](https://github.com/nygctech/PySeq2500) |
-| **Image processing pipeline** | [krpandit/hudson](https://github.com/krpandit/hudson) |
+| **Image processing pipeline** | [krpandit/hudson](https://github.com/nygctech/hudson) |
 | **Ecosystem** | [regenseq.github.io](https://regenseq.github.io/) |
 
 ## Workflow
@@ -30,17 +30,17 @@ protein patterns agree with transcriptomic data from both mouse and human ALS ti
 | Stage | Runs with | Files here |
 |---|---|---|
 | 1. Acquisition — 11 cycles of hybridize / image / strip on the HiSeq 2500 | [PySeq2500](https://github.com/nygctech/PySeq2500) | [`pyseq2500/`](pyseq2500) |
-| 2. Processing — unmixing, registration, segmentation, marker quantification | [hudson](https://github.com/krpandit/hudson) | [`hudson/`](hudson) |
+| 2. Processing — unmixing, registration, segmentation, marker quantification | [hudson](https://github.com/nygctech/hudson) | [`hudson/`](hudson) |
 | 3. Modeling — spatial topic models over the cell × marker matrix | `sceLDA` (this repo) | [`sceLDA/`](sceLDA) |
 
 ### `pyseq2500/` — acquisition
 
-- `example_ImmunoSABER_config.txt` — experiment config: 11 cycles, two flowcells, section
-  coordinates for the SOD1-G93A and B6 sections, imager-to-port assignments, laser powers,
+- `example_ImmunoSABER_config.txt` — experiment config: 11 cycles, two flowcells,
+  coordinates for imaging regions of interests, imager-to-port assignments, laser powers,
   focus and z-stack settings.
 - `ImmunoSABER_recipe.txt` — fluidics recipes: the per-cycle imager exchange (formamide strip →
   PBS → imager hybridization at 37 °C → image), and the pre-recipe that hybridizes concatemers
-  and images the i28 autofocus channel.
+  and images the tissue background.
 
 Run with `pyseq -c example_ImmunoSABER_config.txt`; see the
 [PySeq2500 docs](https://github.com/nygctech/PySeq2500) for installation and the paths in the
@@ -140,10 +140,6 @@ A few rough edges in the research code, left as-is for reproducibility:
   `from model import VAE` rather than relative imports, so they only resolve when
   `sceLDA/src/scelda` is on `sys.path`. The modules listed under *Using sceLDA* above import
   cleanly as `scelda.*`.
-- **The `train_*.py` files are notebook exports, not runnable scripts.**
-  `train_sceLDA_endtoend.py` references data (`X_downsampled`, `loc_df_downsampled`) that is
-  never defined in the file, and `train_slda.py` reads from a `../../test_data/` path not
-  present in the repo. Read them as reference; run the notebooks instead.
 
 ## Data
 
@@ -164,7 +160,3 @@ example notebooks.
 > Dumitrascu B, Phatnani H, Pleska M, Vickovic S. *Spatial proteomics on repurposed sequencers
 > reveals early astrocytic remodeling in an ALS mouse model.* bioRxiv (2026).
 > doi:10.64898/2026.11.08.765207
-
-## License
-
-GPL-3.0 — see [LICENSE](LICENSE).
