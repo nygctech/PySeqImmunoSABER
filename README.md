@@ -22,7 +22,7 @@ protein patterns agree with transcriptomic data from both mouse and human ALS ti
 | **Preprint** | [biorxiv.org/content/10.64898/2026.11.08.765207v1](https://www.biorxiv.org/content/10.64898/2026.11.08.765207v1) |
 | **Data** | [10.5281/zenodo.23959523](https://doi.org/10.5281/zenodo.23959523) |
 | **Sequencer repurposing** | [nygctech/PySeq2500](https://github.com/nygctech/PySeq2500) |
-| **Image processing pipeline** | [krpandit/hudson](https://github.com/nygctech/hudson) |
+| **Image processing pipeline** | [nygctech/hudson](https://github.com/nygctech/hudson) |
 | **Ecosystem** | [regenseq.github.io](https://regenseq.github.io/) |
 
 ## Workflow
